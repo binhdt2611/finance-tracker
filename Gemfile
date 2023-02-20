@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.8'
+ruby '2.7.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
@@ -18,7 +18,8 @@ gem 'jbuilder', '~> 2.7'
 # Add gem devise to work with Authentication System
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem 'iex-ruby-client'
+gem 'finnhub_ruby', '~> 1.1.18'
+gem "font-awesome-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

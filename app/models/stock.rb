@@ -1,10 +1,9 @@
 class Stock < ApplicationRecord
   def self.new_lookup(ticker_symbol)
-    client = IEX::Api::Client.new(
-      publishable_token: Rails.application.credentials.iex_client[:publishable_token],
-      secret_token: Rails.application.credentials.iex_client[:secret_token],
-      endpoint: 'https://cloud.iexapis.com/v1'
-    )
-    client.price(ticker_symbol)
+    FinnhubRuby.configure do |config|
+      config.api_key['api_key'] = Rails.application.credentials.finhub_client[:api_key]
+    end
+    finnhub_client = FinnhubRuby::DefaultApi.new
+    finnhub_client.symbol_search(ticker_symbol)
   end
 end
