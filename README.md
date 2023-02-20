@@ -24,3 +24,15 @@ This is the repo for the Finance Tracker App built with Ruby on Rails 6
 
 1. Generate a Stock model
 rails g model Stock ticker:string name:string last_price:decimal
+
+2. Store secrete key:
+
+Run this command to open credentials file, and add key into it
+``
+EDITOR="code --wait" rails credentials:edit
+``
+E.g. we store key like
+iex_client:
+  publishable_token: "our token"
+
+To reference in code, we use: ``Rails.application.credentials.iex_client[:publishable_token]``
