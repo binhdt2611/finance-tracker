@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.7'
 # Add gem devise to work with Authentication System
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem 'finnhub_ruby', '~> 1.1.18'
+gem 'alphavantage'
 gem "font-awesome-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

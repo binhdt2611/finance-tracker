@@ -1,9 +1,19 @@
 class Stock < ApplicationRecord
   def self.new_lookup(ticker_symbol)
-    FinnhubRuby.configure do |config|
-      config.api_key['api_key'] = Rails.application.credentials.finhub_client[:api_key]
+    Alphavantage.configure do |config|
+      config.api_key = Rails.application.credentials.alphavantage[:api_key]
     end
-    finnhub_client = FinnhubRuby::DefaultApi.new
-    finnhub_client.symbol_search(ticker_symbol)
+
+    quote = Alphavantage::TimeSeries.new(symbol: ticker_symbol).quote
+    company = Alphavantage::Fundamental.new(symbol: ticker_symbol)
+    begin
+      if company.overview.name.nil?
+        raise StandardError.new "Could not find the company overview"
+      else
+        new(ticker: ticker_symbol, name: company.overview.name, last_price: company.overview.analyst_target_price)
+      end 
+    rescue => exception
+      return nil
+    end
   end
 end
